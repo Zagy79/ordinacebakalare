@@ -39,7 +39,7 @@
     }
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 60px; }
   body {
     margin: 0;
     font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -49,24 +49,15 @@
   a { color: var(--green); text-underline-offset: 2px; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
 
-  header { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 66px; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
-  .brand-name { font-weight: 600; font-size: 1.05rem; line-height: 1.2; }
-  .brand-name small { display: block; font-weight: 400; font-size: .78rem; color: var(--muted); }
-  nav { display: flex; gap: 22px; flex-wrap: wrap; }
-  nav a { text-decoration: none; color: var(--muted); font-size: .95rem; }
-  nav a:hover { color: var(--green); }
+  .top .wrap { padding-top: 26px; padding-bottom: 18px; }
+  .brand { text-decoration: none; color: var(--text); display: inline-block; }
+  .brand-name { font-weight: 650; font-size: clamp(1.5rem, 4vw, 1.9rem); line-height: 1.2; letter-spacing: -.01em; }
+  .brand-name small { display: block; font-weight: 400; font-size: .95rem; color: var(--muted); letter-spacing: 0; margin-top: 2px; }
 
-  .hero { background: var(--green-soft); position: relative; overflow: hidden; }
-  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
-  .hero::before { width: 280px; height: 280px; background: var(--sun-soft); right: -60px; top: -90px; }
-  .hero::after { width: 170px; height: 170px; background: var(--sky); right: 170px; bottom: -80px; }
-  .hero .dot { position: absolute; width: 64px; height: 64px; border-radius: 50%; background: var(--peach); right: 80px; top: 120px; }
-  .hero .wrap { position: relative; z-index: 1; padding-top: 52px; padding-bottom: 48px; }
-  .hero .kicker { margin: 0 0 6px; font-size: .82rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--green); }
-  .hero h1 { margin: 0; font-size: clamp(1.8rem, 4.6vw, 2.6rem); line-height: 1.15; font-weight: 650; letter-spacing: -.01em; max-width: 16em; }
-  .hero .addr { margin: 12px 0 0; }
+  .menu { background: var(--green-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .menu nav { display: flex; gap: 26px; flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+  nav a { text-decoration: none; color: var(--text); font-size: .95rem; font-weight: 500; }
+  nav a:hover { color: var(--green); }
 
   .info { background: var(--sun-soft); border-radius: 12px; border-left: 5px solid var(--sun); padding: 20px 22px; margin: 32px 0 8px; }
   .info h2 { font-size: 1.05rem; margin: 0 0 10px; }
@@ -74,7 +65,7 @@
   .info p:last-child { margin-bottom: 0; }
   .info .lead { font-size: 1.08rem; }
 
-  .news { background: var(--sky); border-radius: 12px; border-left: 5px solid #5B9BC4; padding: 18px 22px; margin: 32px 0 0; }
+  .news { background: var(--sky); border-radius: 12px; border-left: 5px solid #5B9BC4; padding: 18px 22px; margin: 28px 0 0; }
   .news h2 { font-size: 1.05rem; margin: 0 0 8px; }
   .news ul { list-style: none; margin: 0; padding: 0; }
   .news li { padding: 6px 0; }
@@ -122,36 +113,26 @@
   footer p { margin: 2px 0; }
 
   @media (max-width: 560px) {
-    nav { gap: 16px; }
-    .hero .wrap { padding-top: 36px; padding-bottom: 36px; }
-    .hero .dot { display: none; }
-    .hero::before { width: 180px; height: 180px; right: -70px; top: -70px; }
-    .hero::after { display: none; }
+    .menu nav { gap: 18px; }
   }
 </style>
 </head>
 <body>
 
-<header>
+<header class="top" id="uvod">
   <div class="wrap">
     <a class="brand" href="#">
-      <span class="brand-name">Ordinace Bakaláře<small>Dětská a dorostová psychiatrie</small></span>
+      <span class="brand-name">Ordinace Bakaláře<small>Ambulance dětské a dorostové psychiatrie · Písek</small></span>
     </a>
-    <nav>
-      <a href="#uvod">Ambulance</a>
-      <a href="#kontakty">Kontakt</a>
-      <a href="#ordinacnihodiny">Ordinační hodiny</a>
-    </nav>
   </div>
 </header>
 
-<div class="hero" id="uvod">
-  <span class="dot" aria-hidden="true"></span>
-  <div class="wrap">
-    <p class="kicker">Ambulance · Písek</p>
-    <h1>Dětská a dorostová psychiatrie</h1>
-    <p class="addr">Bakaláře 44/4, 397 01 Písek</p>
-  </div>
+<div class="menu">
+  <nav class="wrap" aria-label="Hlavní menu">
+    <a href="#aktualne">Aktuálně</a>
+    <a href="#kontakty">Kontakt</a>
+    <a href="#ordinacnihodiny">Ordinační hodiny</a>
+  </nav>
 </div>
 
 <main class="wrap">
