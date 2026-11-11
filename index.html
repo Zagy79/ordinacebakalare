@@ -204,42 +204,16 @@
 <main class="wrap">
 
   <!-- ============================================================
-       AKTUÁLNĚ – nepřítomnost lékařů a jiná dočasná oznámení
-       ------------------------------------------------------------
-       Nepřítomnost se běžně zadává do Google tabulky (odkaz je
-       v proměnné TABULKA_CSV na konci souboru). Zobrazí se jen řádky
-       se zaškrtnutým sloupcem "Schváleno".
-       Ručně sem píšeš jen výjimečná jiná oznámení:
-       ------------------------------------------------------------
-       Každé oznámení je jeden řádek <li> mezi <ul> a </ul>.
-
-       A) Jednotlivé dny – každý den je štítek <span class="den">.
-          data-den = datum (RRRR-MM-DD); den poté štítek zmizí.
-          Když zmizí všechny štítky, zmizí i celý řádek.
-       <li><strong>MUDr. Jméno Příjmení</strong> – nepřítomnost:
-         <span class="den" data-den="2026-12-01">1. 12.</span>
-         <span class="den" data-den="2026-12-08">8. 12.</span>
-       </li>
-
-       B) Delší období nebo jiné oznámení – data-do = poslední den zobrazení.
-       <li data-do="2026-12-31"><strong>MUDr. Jméno Příjmení</strong> – nepřítomnost od 22. 12. do 31. 12. 2026.</li>
-
-       Když žádné platné oznámení není, ukáže se výchozí text (odstavec "prazdne").
-       Staré řádky můžeš občas smazat.
+       AKTUÁLNĚ – nepřítomnost lékařů
+       Obsah se načítá z Google tabulky "Nepřítomnost" (list Web,
+       odkaz v proměnné TABULKA_CSV na konci souboru).
+       Zobrazí se jen řádky s "ano" a "schváleno"; prošlé dny mizí samy.
+       Když nic platného není, ukáže se výchozí text (odstavec "prazdne").
        ============================================================ -->
   <div class="news" id="aktualne">
     <h2>Aktuálně</h2>
     <p class="prazdne" hidden>Ordinujeme podle běžných ordinačních hodin. Mimořádné změny a nepřítomnost lékařů uvádíme vždy na tomto místě.</p>
     <ul>
-      <li><strong>MUDr. Veronika Zagatová</strong> – nepřítomnost:
-        <span class="den" data-den="2026-11-05">5. 11.</span>
-        <span class="den" data-den="2026-11-12">12. 11.</span>
-      </li>
-      <li><strong>MUDr. Jan Homola</strong> – nepřítomnost:
-        <span class="den" data-den="2026-11-04">4. 11.</span>
-        <span class="den" data-den="2026-11-11">11. 11.</span>
-        <span class="den" data-den="2026-11-18">18. 11.</span>
-      </li>
     </ul>
   </div>
 
