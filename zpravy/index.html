@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Žádost o lékařskou zprávu – Ordinace Bakaláře</title>
+<meta name="description" content="Online žádost o lékařskou zprávu nebo výpis z dokumentace v Ordinaci Bakaláře v Písku. Platba převodem, zpráva do 4 pracovních dnů od zaplacení.">
+<meta name="theme-color" content="#3F7A5A">
+<link rel="canonical" href="https://ordinacebakalare.cz/zpravy/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="Ordinace Bakaláře">
+<meta property="og:title" content="Žádost o lékařskou zprávu – Ordinace Bakaláře">
+<meta property="og:description" content="Požádejte o lékařskou zprávu online. Platba převodem, zpráva do 4 pracovních dnů od zaplacení.">
+<meta property="og:url" content="https://ordinacebakalare.cz/zpravy/">
+<meta property="og:image" content="https://ordinacebakalare.cz/apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #FCFBF7; --surface: #FFFFFF; --text: #23302A; --muted: #5C6A62; --line: #E4E6DF;
+    --green: #3F7A5A; --green-soft: #E5F1E8; --green-mid: #9CC9AA; --sun: #F5B841; --sun-soft: #FFF3D9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161C19; --surface: #1D2521; --text: #E8EEEA; --muted: #A6B3AB; --line: #2E3833;
+      --green: #8ED0A8; --green-soft: #22332A; --green-mid: #3F7A5A; --sun: #F5B841; --sun-soft: #33291A;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px; line-height: 1.6; color: var(--text); background: var(--bg);
+  }
+  a { color: var(--green); text-underline-offset: 2px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+  .top .wrap { padding-top: 26px; padding-bottom: 18px; }
+  .brand { text-decoration: none; color: var(--text); display: inline-block; }
+  .brand-name { margin: 0; font-weight: 650; font-size: clamp(1.5rem, 4vw, 1.9rem); line-height: 1.2; letter-spacing: -.01em; }
+  .brand-name small { display: block; font-weight: 400; font-size: .95rem; color: var(--muted); letter-spacing: 0; margin-top: 2px; }
+
+  .menu { background: var(--green-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .menu nav { display: flex; gap: 26px; flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+  nav a { text-decoration: none; color: var(--text); font-size: .95rem; font-weight: 500; }
+  nav a:hover { color: var(--green); }
+
+  h2.title { font-size: 1.6rem; font-weight: 650; margin: 32px 0 6px; line-height: 1.25; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+
+  .steps { list-style: none; counter-reset: s; padding: 0; margin: 0 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 16px 56px; position: relative; }
+  .steps li::before { content: counter(s); position: absolute; left: 16px; top: 15px; width: 28px; height: 28px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-weight: 700; display: grid; place-items: center; }
+  .steps strong { display: block; }
+
+  .info { background: var(--sun-soft); border-radius: 12px; border-left: 5px solid var(--sun); padding: 18px 22px; margin: 0 0 24px; }
+  .info h3 { font-size: 1.02rem; margin: 0 0 8px; }
+  .info ul { margin: 0; padding-left: 20px; }
+  .info li { margin: 4px 0; }
+
+  table.price { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 0 0 28px; font-size: .95rem; }
+  table.price th, table.price td { padding: 11px 16px; text-align: left; border-top: 1px solid var(--line); vertical-align: top; }
+  table.price thead th { border-top: 0; background: var(--green-soft); font-weight: 600; }
+  table.price td.amount { white-space: nowrap; text-align: right; font-weight: 600; }
+  table.price thead th:last-child { text-align: right; }
+
+  .form-box { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .form-box iframe { display: block; width: 100%; height: 2050px; border: 0; background: #fff; }
+  .fallback { font-size: .92rem; color: var(--muted); margin: 10px 0 0; }
+
+  footer { background: var(--green-soft); margin-top: 36px; padding: 22px 0 30px; color: var(--muted); font-size: .9rem; }
+  footer p { margin: 2px 0; }
+
+  @media (max-width: 560px) {
+    .menu nav { gap: 18px; }
+    .form-box iframe { height: 2350px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <h1 class="brand-name">Ordinace Bakaláře<small>Ambulance dětské a dorostové psychiatrie · Písek</small></h1>
+    </a>
+  </div>
+</header>
+
+<div class="menu">
+  <nav class="wrap" aria-label="Hlavní menu">
+    <a href="/">Úvod</a>
+    <a href="/#kontakty">Kontakt</a>
+    <a href="/#ordinacnihodiny">Ordinační hodiny</a>
+  </nav>
+</div>
+
+<main class="wrap">
+
+  <h2 class="title">Žádost o lékařskou zprávu</h2>
+  <p class="sub">Lékařskou zprávu nebo výpis z dokumentace pro naše pacienty si můžete objednat online.</p>
+
+  <ol class="steps">
+    <li><strong>Vyplňte žádost</strong>Formulář najdete níže na této stránce.</li>
+    <li><strong>Zaplaťte převodem</strong>Platební údaje s QR kódem vám přijdou e-mailem během několika minut.</li>
+    <li><strong>Zprávu vám pošleme</strong>Do 4 pracovních dnů od připsání platby na e-mail zákonného zástupce.</li>
+  </ol>
+
+  <div class="info" role="note">
+    <h3>Než začnete</h3>
+    <ul>
+      <li>Platí se <strong>pouze převodem z domova</strong>. V ordinaci platby nepřijímáme.</li>
+      <li>Zprávu vypracujeme <strong>až po zaplacení</strong>. Nezaplacené žádosti po 30 dnech rušíme.</li>
+      <li>Zprávu vždy posíláme na <strong>e-mail zákonného zástupce uvedený v kartě pacienta</strong>, bez ohledu na to, kdo o ni požádal nebo kdo platil.</li>
+      <li>Pokud zprávu nelze vystavit, platbu vrátíme na účet, ze kterého přišla.</li>
+      <li>Do formuláře prosím nepište diagnózy ani důvody péče.</li>
+      <li>Máte-li od lékaře kartičku s kódem, zadejte ho do formuláře. Zpráva pak bude zdarma.</li>
+    </ul>
+  </div>
+
+  <table class="price">
+    <thead><tr><th>Ceník</th><th>Cena</th></tr></thead>
+    <tbody>
+      <tr><td>Lékařská zpráva / výpis z dokumentace na žádost rodiče</td><td class="amount">200 Kč</td></tr>
+      <tr><td>Lékařská zpráva pro školu nebo školské zařízení (MŠ, ZŠ, SŠ, PPP, SPC, SVP…)</td><td class="amount">200 Kč</td></tr>
+      <tr><td>Lékařská zpráva pro sport, tábor, rekreační akci</td><td class="amount">200 Kč</td></tr>
+      <tr><td>Podrobný výpis z dokumentace pro komerční pojišťovnu</td><td class="amount">250 Kč</td></tr>
+    </tbody>
+  </table>
+
+  <div class="form-box" id="formular">
+    <iframe src="https://docs.google.com/forms/d/18jw8zfYGpNGNLje_dVV8DDzG6x25H1zfVBxPpu9eqQc/viewform?embedded=true"
+            title="Formulář žádosti o lékařskou zprávu" loading="lazy">Načítání…</iframe>
+  </div>
+  <p class="fallback">Formulář se nezobrazuje? <a href="https://docs.google.com/forms/d/18jw8zfYGpNGNLje_dVV8DDzG6x25H1zfVBxPpu9eqQc/viewform" target="_blank" rel="noopener">Otevřete ho v novém okně</a>.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Ordinace Bakaláře s.r.o.</strong></p>
+    <p>Bakaláře 44/4, 397 01 Písek</p>
+    <p>IČO: 23687126 · Datová schránka: hpd7yz6</p>
+  </div>
+</footer>
+
+</body>
+</html>
