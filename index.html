@@ -404,16 +404,17 @@
       if (rows.length < 2) return;
       var h = rows[0].map(bezDiakritiky);
       function sl(prefix) { for (var i = 0; i < h.length; i++) if (h[i].indexOf(prefix) === 0) return i; return -1; }
-      var iL = sl('lekar'), iOd = sl('datum'), iDo = sl('do'), iP = sl('poznamka'), iS = sl('schval');
-      if (iL < 0 || iOd < 0 || iS < 0) return;
-      var ano = /^(true|pravda|ano|x|1|✓|✔)$/i;
+      var iL = sl('jmeno'); if (iL < 0) iL = sl('lekar');
+      var iOd = sl('datum'), iP = sl('poznamka'), iS = sl('schval');
+      if (iL < 0 || iOd < 0) return;
+      var ano = /^(true|pravda|ano|x|1|✓|✔|schváleno)$/i;
       var lekari = {}, poradi = [];
       rows.slice(1).forEach(function (r) {
-        if (!ano.test((r[iS] || '').trim())) return;
+        if (iS >= 0 && !ano.test((r[iS] || '').trim())) return;
         var jmeno = (r[iL] || '').trim();
         var od = cteniData(r[iOd]);
         if (!jmeno || !od) return;
-        var konec = (iDo >= 0 && cteniData(r[iDo])) || od;
+        var konec = od;
         var text = konec > od ? hezky(od) + '–' + hezky(konec) : hezky(od);
         var pozn = iP >= 0 ? (r[iP] || '').trim() : '';
         if (pozn) text += ' (' + pozn + ')';
