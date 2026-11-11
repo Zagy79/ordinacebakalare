@@ -353,7 +353,7 @@
   // ============================================================
   // Odkaz na Google tabulku s nepřítomností (Publikovat na web → CSV).
   // Dokud je prázdný, berou se jen oznámení zapsaná přímo v HTML.
-  var TABULKA_CSV = '';
+  var TABULKA_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSdZb7ZDDyCcbCMW9oIbki_SL7jM-Z6V7z0sO4-uwZpkHHall1GrrmZoLoVZgZoepa2YC3bJBSijO92/pub?gid=1277850431&single=true&output=csv';
   // ============================================================
 
   (function () {
@@ -456,7 +456,7 @@
     if (TABULKA_CSV) {
       fetch(TABULKA_CSV, { cache: 'no-store' })
         .then(function (r) { if (!r.ok) throw r; return r.text(); })
-        .then(function (t) { zTabulky(t); uklid(); })
+        .then(function (t) { if (t.indexOf('<') === 0) throw t; ul.innerHTML = ''; zTabulky(t); uklid(); })
         .catch(function () { /* tabulka nedostupná – zůstane, co je v HTML */ });
     }
   })();
